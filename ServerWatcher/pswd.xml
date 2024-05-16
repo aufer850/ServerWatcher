@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<root>
+	<User Name="Niki_ta">
+		<Password> "12345" </Password>
+		<Admin> True </Admin>
+		</User>
+</root>
