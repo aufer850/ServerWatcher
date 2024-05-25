@@ -1,7 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?> 
 <root>
 	<User Name="Niki_ta">
-		<Password> "12345" </Password>
-		<Admin> True </Admin>
+		<Password>12345</Password>
+		<Admin>True</Admin>
 		</User>
+	<User Name="1">
+		<Password>1</Password>
+		<Admin>True</Admin>
+	</User>
+	<User Name="bottleofench">
+		<Password>cookie228</Password>
+		<Admin>True</Admin>
+	</User>
+	<User Name="CptDarek">
+		<Password>2845</Password>
+		<Admin>False</Admin>
+	</User>
 </root>

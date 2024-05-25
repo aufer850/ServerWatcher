@@ -1,7 +1,7 @@
 ﻿
 namespace ServerWatcher
 {
-    partial class Form2
+    partial class Login
     {
         /// <summary>
         /// Required designer variable.
@@ -32,7 +32,7 @@ namespace ServerWatcher
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.Login = new System.Windows.Forms.TextBox();
+            this.UserLogin = new System.Windows.Forms.TextBox();
             this.Password = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -68,13 +68,13 @@ namespace ServerWatcher
             this.label3.TabIndex = 2;
             this.label3.Text = "Пароль";
             // 
-            // Login
+            // UserLogin
             // 
-            this.Login.Location = new System.Drawing.Point(81, 140);
-            this.Login.Name = "Login";
-            this.Login.Size = new System.Drawing.Size(100, 20);
-            this.Login.TabIndex = 3;
-            this.Login.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.UserLogin.Location = new System.Drawing.Point(81, 140);
+            this.UserLogin.Name = "UserLogin";
+            this.UserLogin.Size = new System.Drawing.Size(100, 20);
+            this.UserLogin.TabIndex = 3;
+            this.UserLogin.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // Password
             // 
@@ -94,19 +94,20 @@ namespace ServerWatcher
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Form2
+            // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 361);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Password);
-            this.Controls.Add(this.Login);
+            this.Controls.Add(this.UserLogin);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Form2";
+            this.Name = "Login";
             this.Text = "Form2";
+            this.Load += new System.EventHandler(this.Login_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -117,7 +118,7 @@ namespace ServerWatcher
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox Login;
+        private System.Windows.Forms.TextBox UserLogin;
         private System.Windows.Forms.TextBox Password;
         private System.Windows.Forms.Button button1;
     }
