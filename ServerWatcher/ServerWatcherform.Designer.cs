@@ -31,12 +31,17 @@ namespace ServerWatcher
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.MainMenu = new System.Windows.Forms.TabPage();
+            this.PlanL2 = new System.Windows.Forms.Label();
+            this.PlanL1 = new System.Windows.Forms.Label();
+            this.ReloadTimeBox = new System.Windows.Forms.TextBox();
+            this.ReloadDateBox = new System.Windows.Forms.TextBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.ReasonLabel = new System.Windows.Forms.Label();
             this.LastIdLabel = new System.Windows.Forms.Label();
             this.LastReloadLabel = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.clearbutton = new System.Windows.Forms.Button();
+            this.LoadButton = new System.Windows.Forms.Button();
+            this.SaveButton = new System.Windows.Forms.Button();
             this.IDBox = new System.Windows.Forms.TextBox();
             this.Deletebutton = new System.Windows.Forms.Button();
             this.ReloadMenuAdminLabel = new System.Windows.Forms.Label();
@@ -50,6 +55,12 @@ namespace ServerWatcher
             this.ReloadButton = new System.Windows.Forms.Button();
             this.DisplayName = new System.Windows.Forms.Label();
             this.SearchTab = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ProOnlyBox = new System.Windows.Forms.CheckBox();
+            this.EndDataTextBox = new System.Windows.Forms.TextBox();
+            this.StartDataTextBox = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.SearchGridView = new System.Windows.Forms.DataGridView();
@@ -57,12 +68,6 @@ namespace ServerWatcher
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StartDataTextBox = new System.Windows.Forms.TextBox();
-            this.EndDataTextBox = new System.Windows.Forms.TextBox();
-            this.ProOnlyBox = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.MainMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainMenuDataGrid)).BeginInit();
@@ -90,12 +95,17 @@ namespace ServerWatcher
             // 
             this.MainMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.MainMenu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.MainMenu.Controls.Add(this.PlanL2);
+            this.MainMenu.Controls.Add(this.PlanL1);
+            this.MainMenu.Controls.Add(this.ReloadTimeBox);
+            this.MainMenu.Controls.Add(this.ReloadDateBox);
+            this.MainMenu.Controls.Add(this.checkBox1);
             this.MainMenu.Controls.Add(this.ReasonLabel);
             this.MainMenu.Controls.Add(this.LastIdLabel);
             this.MainMenu.Controls.Add(this.LastReloadLabel);
-            this.MainMenu.Controls.Add(this.button3);
-            this.MainMenu.Controls.Add(this.button2);
-            this.MainMenu.Controls.Add(this.button1);
+            this.MainMenu.Controls.Add(this.clearbutton);
+            this.MainMenu.Controls.Add(this.LoadButton);
+            this.MainMenu.Controls.Add(this.SaveButton);
             this.MainMenu.Controls.Add(this.IDBox);
             this.MainMenu.Controls.Add(this.Deletebutton);
             this.MainMenu.Controls.Add(this.ReloadMenuAdminLabel);
@@ -113,6 +123,59 @@ namespace ServerWatcher
             this.MainMenu.Text = "Головна";
             this.MainMenu.UseVisualStyleBackColor = true;
             this.MainMenu.Click += new System.EventHandler(this.Main_Click);
+            // 
+            // PlanL2
+            // 
+            this.PlanL2.AutoSize = true;
+            this.PlanL2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
+            this.PlanL2.Location = new System.Drawing.Point(154, 260);
+            this.PlanL2.Name = "PlanL2";
+            this.PlanL2.Size = new System.Drawing.Size(33, 17);
+            this.PlanL2.TabIndex = 18;
+            this.PlanL2.Text = "Час";
+            this.PlanL2.Visible = false;
+            // 
+            // PlanL1
+            // 
+            this.PlanL1.AutoSize = true;
+            this.PlanL1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
+            this.PlanL1.Location = new System.Drawing.Point(13, 260);
+            this.PlanL1.Name = "PlanL1";
+            this.PlanL1.Size = new System.Drawing.Size(42, 17);
+            this.PlanL1.TabIndex = 17;
+            this.PlanL1.Text = "Дата";
+            this.PlanL1.Visible = false;
+            // 
+            // ReloadTimeBox
+            // 
+            this.ReloadTimeBox.Location = new System.Drawing.Point(154, 280);
+            this.ReloadTimeBox.Name = "ReloadTimeBox";
+            this.ReloadTimeBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.ReloadTimeBox.Size = new System.Drawing.Size(100, 20);
+            this.ReloadTimeBox.TabIndex = 16;
+            this.ReloadTimeBox.Visible = false;
+            // 
+            // ReloadDateBox
+            // 
+            this.ReloadDateBox.Location = new System.Drawing.Point(13, 280);
+            this.ReloadDateBox.Name = "ReloadDateBox";
+            this.ReloadDateBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.ReloadDateBox.Size = new System.Drawing.Size(94, 20);
+            this.ReloadDateBox.TabIndex = 15;
+            this.ReloadDateBox.Visible = false;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
+            this.checkBox1.Location = new System.Drawing.Point(11, 213);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.checkBox1.Size = new System.Drawing.Size(113, 21);
+            this.checkBox1.TabIndex = 14;
+            this.checkBox1.Text = "Запланувати";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // ReasonLabel
             // 
@@ -147,38 +210,38 @@ namespace ServerWatcher
             this.LastReloadLabel.TabIndex = 11;
             this.LastReloadLabel.Text = "Останній перезапуск";
             // 
-            // button3
+            // clearbutton
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
-            this.button3.Location = new System.Drawing.Point(712, 389);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(155, 35);
-            this.button3.TabIndex = 10;
-            this.button3.Text = "Очистити";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.clearbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
+            this.clearbutton.Location = new System.Drawing.Point(712, 389);
+            this.clearbutton.Name = "clearbutton";
+            this.clearbutton.Size = new System.Drawing.Size(155, 35);
+            this.clearbutton.TabIndex = 10;
+            this.clearbutton.Text = "Очистити";
+            this.clearbutton.UseVisualStyleBackColor = true;
+            this.clearbutton.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button2
+            // LoadButton
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
-            this.button2.Location = new System.Drawing.Point(507, 389);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(155, 35);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Завантажити";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.LoadButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
+            this.LoadButton.Location = new System.Drawing.Point(507, 389);
+            this.LoadButton.Name = "LoadButton";
+            this.LoadButton.Size = new System.Drawing.Size(155, 35);
+            this.LoadButton.TabIndex = 9;
+            this.LoadButton.Text = "Завантажити";
+            this.LoadButton.UseVisualStyleBackColor = true;
+            this.LoadButton.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button1
+            // SaveButton
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
-            this.button1.Location = new System.Drawing.Point(290, 389);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(155, 35);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Зберегти";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.SaveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
+            this.SaveButton.Location = new System.Drawing.Point(290, 389);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(155, 35);
+            this.SaveButton.TabIndex = 8;
+            this.SaveButton.Text = "Зберегти";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // IDBox
             // 
@@ -209,7 +272,7 @@ namespace ServerWatcher
             // 
             this.ReloadMenuAdminLabel.AutoSize = true;
             this.ReloadMenuAdminLabel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
-            this.ReloadMenuAdminLabel.Location = new System.Drawing.Point(44, 285);
+            this.ReloadMenuAdminLabel.Location = new System.Drawing.Point(46, 191);
             this.ReloadMenuAdminLabel.Name = "ReloadMenuAdminLabel";
             this.ReloadMenuAdminLabel.Size = new System.Drawing.Size(186, 19);
             this.ReloadMenuAdminLabel.TabIndex = 5;
@@ -233,7 +296,7 @@ namespace ServerWatcher
             "Оновлення",
             "Технічні проблеми",
             "Інше"});
-            this.ReloadReasonBox.Location = new System.Drawing.Point(7, 337);
+            this.ReloadReasonBox.Location = new System.Drawing.Point(11, 338);
             this.ReloadReasonBox.Name = "ReloadReasonBox";
             this.ReloadReasonBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.ReloadReasonBox.Size = new System.Drawing.Size(155, 21);
@@ -331,6 +394,62 @@ namespace ServerWatcher
             this.SearchTab.UseVisualStyleBackColor = true;
             this.SearchTab.Click += new System.EventHandler(this.Search_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
+            this.label3.Location = new System.Drawing.Point(52, 63);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(81, 24);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "ПОШУК";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
+            this.label2.Location = new System.Drawing.Point(8, 192);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(113, 20);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Кінцева дата:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
+            this.label1.Location = new System.Drawing.Point(8, 111);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(138, 20);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Початкова дата:";
+            this.label1.Click += new System.EventHandler(this.label1_Click_1);
+            // 
+            // ProOnlyBox
+            // 
+            this.ProOnlyBox.AutoSize = true;
+            this.ProOnlyBox.Location = new System.Drawing.Point(8, 278);
+            this.ProOnlyBox.Name = "ProOnlyBox";
+            this.ProOnlyBox.Size = new System.Drawing.Size(162, 17);
+            this.ProOnlyBox.TabIndex = 9;
+            this.ProOnlyBox.Text = "Тільки через профілактику";
+            this.ProOnlyBox.UseVisualStyleBackColor = true;
+            // 
+            // EndDataTextBox
+            // 
+            this.EndDataTextBox.Location = new System.Drawing.Point(8, 215);
+            this.EndDataTextBox.Name = "EndDataTextBox";
+            this.EndDataTextBox.Size = new System.Drawing.Size(158, 20);
+            this.EndDataTextBox.TabIndex = 8;
+            this.EndDataTextBox.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            // 
+            // StartDataTextBox
+            // 
+            this.StartDataTextBox.Location = new System.Drawing.Point(8, 136);
+            this.StartDataTextBox.Name = "StartDataTextBox";
+            this.StartDataTextBox.Size = new System.Drawing.Size(158, 20);
+            this.StartDataTextBox.TabIndex = 7;
+            // 
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(481, 378);
@@ -400,62 +519,6 @@ namespace ServerWatcher
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.Width = 69;
             // 
-            // StartDataTextBox
-            // 
-            this.StartDataTextBox.Location = new System.Drawing.Point(8, 136);
-            this.StartDataTextBox.Name = "StartDataTextBox";
-            this.StartDataTextBox.Size = new System.Drawing.Size(158, 20);
-            this.StartDataTextBox.TabIndex = 7;
-            // 
-            // EndDataTextBox
-            // 
-            this.EndDataTextBox.Location = new System.Drawing.Point(8, 215);
-            this.EndDataTextBox.Name = "EndDataTextBox";
-            this.EndDataTextBox.Size = new System.Drawing.Size(158, 20);
-            this.EndDataTextBox.TabIndex = 8;
-            this.EndDataTextBox.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            // 
-            // ProOnlyBox
-            // 
-            this.ProOnlyBox.AutoSize = true;
-            this.ProOnlyBox.Location = new System.Drawing.Point(8, 278);
-            this.ProOnlyBox.Name = "ProOnlyBox";
-            this.ProOnlyBox.Size = new System.Drawing.Size(162, 17);
-            this.ProOnlyBox.TabIndex = 9;
-            this.ProOnlyBox.Text = "Тільки через профілактику";
-            this.ProOnlyBox.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
-            this.label1.Location = new System.Drawing.Point(8, 111);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(138, 20);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Початкова дата:";
-            this.label1.Click += new System.EventHandler(this.label1_Click_1);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
-            this.label2.Location = new System.Drawing.Point(8, 192);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(113, 20);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Кінцева дата:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
-            this.label3.Location = new System.Drawing.Point(52, 63);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(81, 24);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "ПОШУК";
-            // 
             // ServerWatcherform
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -488,9 +551,9 @@ namespace ServerWatcher
         private System.Windows.Forms.Label RAdminLabel;
         private System.Windows.Forms.Button Deletebutton;
         private System.Windows.Forms.TextBox IDBox;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button SaveButton;
+        private System.Windows.Forms.Button LoadButton;
+        private System.Windows.Forms.Button clearbutton;
         private System.Windows.Forms.Label LastReloadLabel;
         private System.Windows.Forms.Label LastIdLabel;
         private System.Windows.Forms.Label ReasonLabel;
@@ -511,6 +574,11 @@ namespace ServerWatcher
         private System.Windows.Forms.TextBox EndDataTextBox;
         private System.Windows.Forms.TextBox StartDataTextBox;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label PlanL2;
+        private System.Windows.Forms.Label PlanL1;
+        private System.Windows.Forms.TextBox ReloadTimeBox;
+        private System.Windows.Forms.TextBox ReloadDateBox;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 

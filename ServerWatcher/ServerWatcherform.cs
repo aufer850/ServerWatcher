@@ -82,26 +82,6 @@ namespace ServerWatcher
                 RList[j] = KeyR;
             }
         }
-        int BinarySearch(List<Reload> SeekList, int SeekID)
-        {
-        int low = 0;
-        int high = SeekList.Count - 1;
-            while (low <= high)
-            {
-                int mid = (low + high) / 2;
-                int r = SeekList[mid].ID;
-                if (r == SeekID)
-                {
-                    return mid;
-                }
-                if (r > SeekID)
-                low = mid + 1;
-                else
-                high = mid - 1;
-            }
-                  return -1; // Не знайдено   
-        
-        }
 // Далі йдуть методи самої програми
 
 private void Search_Click(object sender, EventArgs e)
@@ -138,11 +118,35 @@ private void Search_Click(object sender, EventArgs e)
             }
             if (Admin == true)
             {
+                DateTime PlanDay = DateTime.Now;
+                DateTime PlanTime = DateTime.Now;
+                DateTime ReloadTime = DateTime.Now;
+                int T = 0;
+                if (ReloadDateBox.Text != "")
+                {
+                    try { PlanDay = Convert.ToDateTime(ReloadDateBox.Text); } catch { MessageBox.Show("Неправильно вказана дата", "Помилка!"); return; }
+                    T++;
+                }
+                if (ReloadTimeBox.Text != "")
+                {
+                    try { PlanTime = Convert.ToDateTime(ReloadTimeBox.Text); } catch { MessageBox.Show("Неправильно вказано час", "Помилка!"); return; }
+                    T++;
+                }
+                if (T == 2)
+                {
+                    ReloadTime = PlanDay + PlanTime.TimeOfDay;
+                }
                 IDNumber++;
-                Reload R = new Reload(IDNumber, DateTime.Now, UserName, ReloadReasonBox.Text);
-                AddInTable(R, MainMenuDataGrid);
-                ReloadList.Add(R);
+                if (ReloadTime >= DateTime.Now)
+                {
+                    Reload R = new Reload(IDNumber, ReloadTime, UserName, ReloadReasonBox.Text);
+                    AddInTable(R, MainMenuDataGrid);
+                    ReloadList.Add(R);
+                }
+                else MessageBox.Show("Вказано час, раніший за теперішній!","Помилка!");
+                
             }
+
             else MessageBox.Show("Ви не адміністратор!", "Помилка!");
         }
 
@@ -181,6 +185,8 @@ private void Search_Click(object sender, EventArgs e)
             DS.Tables.Add(dt);
             return (DS);
         }
+
+        //Збереження дати та створення впорядкованих даних згідно індивідуального завдання
         private void button1_Click_1(object sender, EventArgs e)
         {
         try
@@ -253,10 +259,13 @@ private void Search_Click(object sender, EventArgs e)
             else MessageBox.Show("Немає файлу!", "Помилка!");
         }
 
+        //Очистка
         private void button3_Click(object sender, EventArgs e)
         {
             ClearTable(MainMenuDataGrid);
         }
+
+        // пошук Нічник перезапусків
         private void button5_Click(object sender, EventArgs e)
         {
             List < Reload > LocalList = new List<Reload>();
@@ -287,6 +296,7 @@ private void Search_Click(object sender, EventArgs e)
 
         }
 
+        // Пошук перезапусків в період часу
         private void button4_Click(object sender, EventArgs e)
         {
             List<Reload> LocalList = new List<Reload>();
@@ -308,6 +318,20 @@ private void Search_Click(object sender, EventArgs e)
                 }
             }
             ReloadTable(SearchGridView, LocalList);
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            bool c = checkBox1.Checked;
+            PlanL1.Visible = c;
+            PlanL2.Visible = c;
+            ReloadDateBox.Visible = c;
+            ReloadTimeBox.Visible = c;
+            if(c == false)
+            {
+                ReloadDateBox.Text = "";
+                ReloadTimeBox.Text = "";
+            }
         }
     }
 }
