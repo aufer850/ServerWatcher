@@ -139,6 +139,18 @@ private void Search_Click(object sender, EventArgs e)
                 IDNumber++;
                 if (ReloadTime >= DateTime.Now)
                 {
+                    foreach (Reload Rel in ReloadList)
+                    {
+                        DateTime D = Rel.Date;
+                        //перевірка, чи існує подібний перезапуск
+                        string DR = D.AddSeconds(-1 * D.Second).AddMilliseconds(-1 * D.Millisecond).ToString();
+                        string RR = ReloadTime.AddSeconds(-1 * ReloadTime.Second).AddMilliseconds(-1 * ReloadTime.Millisecond).ToString();
+                        if (string.Equals(DR,RR))
+                        {
+                            MessageBox.Show("Такий перезапуск вже створено! \nПочекайте хвилину, або заплануйте перезапуск!", "Помилка!");
+                            return;
+                        }
+                    }
                     Reload R = new Reload(IDNumber, ReloadTime, UserName, ReloadReasonBox.Text);
                     AddInTable(R, MainMenuDataGrid);
                     ReloadList.Add(R);
