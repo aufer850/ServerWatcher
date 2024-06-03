@@ -48,6 +48,10 @@ namespace ServerWatcher
             this.RAdminLabel = new System.Windows.Forms.Label();
             this.ReloadReasonBox = new System.Windows.Forms.ComboBox();
             this.MainMenuDataGrid = new System.Windows.Forms.DataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.User = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Reason = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ReloadButton = new System.Windows.Forms.Button();
             this.DisplayName = new System.Windows.Forms.Label();
             this.SearchTab = new System.Windows.Forms.TabPage();
@@ -60,14 +64,11 @@ namespace ServerWatcher
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.SearchGridView = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.User = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Reason = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ChangeButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.MainMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainMenuDataGrid)).BeginInit();
@@ -95,6 +96,7 @@ namespace ServerWatcher
             // 
             this.MainMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.MainMenu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.MainMenu.Controls.Add(this.ChangeButton);
             this.MainMenu.Controls.Add(this.PlanL2);
             this.MainMenu.Controls.Add(this.PlanL1);
             this.MainMenu.Controls.Add(this.ReloadTimeBox);
@@ -213,9 +215,9 @@ namespace ServerWatcher
             // clearbutton
             // 
             this.clearbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
-            this.clearbutton.Location = new System.Drawing.Point(712, 389);
+            this.clearbutton.Location = new System.Drawing.Point(689, 390);
             this.clearbutton.Name = "clearbutton";
-            this.clearbutton.Size = new System.Drawing.Size(155, 35);
+            this.clearbutton.Size = new System.Drawing.Size(178, 35);
             this.clearbutton.TabIndex = 10;
             this.clearbutton.Text = "Очистити";
             this.clearbutton.UseVisualStyleBackColor = true;
@@ -224,11 +226,11 @@ namespace ServerWatcher
             // LoadButton
             // 
             this.LoadButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
-            this.LoadButton.Location = new System.Drawing.Point(507, 389);
+            this.LoadButton.Location = new System.Drawing.Point(468, 389);
             this.LoadButton.Name = "LoadButton";
-            this.LoadButton.Size = new System.Drawing.Size(155, 35);
+            this.LoadButton.Size = new System.Drawing.Size(215, 35);
             this.LoadButton.TabIndex = 9;
-            this.LoadButton.Text = "Завантажити";
+            this.LoadButton.Text = "Завантажити з файлу";
             this.LoadButton.UseVisualStyleBackColor = true;
             this.LoadButton.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -237,7 +239,7 @@ namespace ServerWatcher
             this.SaveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
             this.SaveButton.Location = new System.Drawing.Point(290, 389);
             this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(155, 35);
+            this.SaveButton.Size = new System.Drawing.Size(172, 35);
             this.SaveButton.TabIndex = 8;
             this.SaveButton.Text = "Зберегти";
             this.SaveButton.UseVisualStyleBackColor = true;
@@ -320,12 +322,47 @@ namespace ServerWatcher
             this.MainMenuDataGrid.TabIndex = 3;
             this.MainMenuDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
+            // ID
+            // 
+            this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ID.FillWeight = 10F;
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            // 
+            // Date
+            // 
+            this.Date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Date.FillWeight = 20F;
+            this.Date.HeaderText = "Дата";
+            this.Date.Name = "Date";
+            this.Date.ReadOnly = true;
+            this.Date.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // User
+            // 
+            this.User.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.User.FillWeight = 30F;
+            this.User.HeaderText = "Користуввач";
+            this.User.Name = "User";
+            this.User.ReadOnly = true;
+            this.User.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // Reason
+            // 
+            this.Reason.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.Reason.FillWeight = 30F;
+            this.Reason.HeaderText = "Причина";
+            this.Reason.Name = "Reason";
+            this.Reason.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Reason.Width = 75;
+            // 
             // ReloadButton
             // 
             this.ReloadButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
-            this.ReloadButton.Location = new System.Drawing.Point(7, 389);
+            this.ReloadButton.Location = new System.Drawing.Point(7, 390);
             this.ReloadButton.Name = "ReloadButton";
-            this.ReloadButton.Size = new System.Drawing.Size(155, 35);
+            this.ReloadButton.Size = new System.Drawing.Size(140, 35);
             this.ReloadButton.TabIndex = 2;
             this.ReloadButton.Text = "Перезавантажити";
             this.ReloadButton.UseVisualStyleBackColor = true;
@@ -455,41 +492,6 @@ namespace ServerWatcher
             this.SearchGridView.TabIndex = 4;
             this.SearchGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SearchGridView_CellContentClick);
             // 
-            // ID
-            // 
-            this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ID.FillWeight = 10F;
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            // 
-            // Date
-            // 
-            this.Date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Date.FillWeight = 20F;
-            this.Date.HeaderText = "Дата";
-            this.Date.Name = "Date";
-            this.Date.ReadOnly = true;
-            this.Date.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // User
-            // 
-            this.User.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.User.FillWeight = 30F;
-            this.User.HeaderText = "Користуввач";
-            this.User.Name = "User";
-            this.User.ReadOnly = true;
-            this.User.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // Reason
-            // 
-            this.Reason.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.Reason.FillWeight = 30F;
-            this.Reason.HeaderText = "Причина";
-            this.Reason.Name = "Reason";
-            this.Reason.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Reason.Width = 75;
-            // 
             // dataGridViewTextBoxColumn4
             // 
             this.dataGridViewTextBoxColumn4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -524,6 +526,17 @@ namespace ServerWatcher
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewTextBoxColumn1.Width = 75;
+            // 
+            // ChangeButton
+            // 
+            this.ChangeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
+            this.ChangeButton.Location = new System.Drawing.Point(154, 390);
+            this.ChangeButton.Name = "ChangeButton";
+            this.ChangeButton.Size = new System.Drawing.Size(130, 35);
+            this.ChangeButton.TabIndex = 19;
+            this.ChangeButton.Text = "Змінити";
+            this.ChangeButton.UseVisualStyleBackColor = true;
+            this.ChangeButton.Click += new System.EventHandler(this.ChangeButton_Click);
             // 
             // ServerWatcherform
             // 
@@ -585,6 +598,7 @@ namespace ServerWatcher
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.Button ChangeButton;
     }
 }
 

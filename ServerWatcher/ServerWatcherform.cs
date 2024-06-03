@@ -82,6 +82,18 @@ namespace ServerWatcher
                 RList[j] = KeyR;
             }
         }
+        private int FindIDIndex(List<Reload> RList, int ID)
+        {
+            for (int i = 0; i < RList.Count; i++)
+            {
+                Reload R = RList[i];
+                if(R.ID == ID)
+                {
+                    return i;
+                }
+            }
+            return -1; // не знайдено
+        }
 // Далі йдуть методи самої програми
 
 private void Search_Click(object sender, EventArgs e)
@@ -106,7 +118,15 @@ private void Search_Click(object sender, EventArgs e)
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            if (Admin == true)
+            {
+                checkBox1.Checked = true;
+                int n = MainMenuDataGrid.SelectedCells[0].RowIndex;
+                ReloadReasonBox.Text = MainMenuDataGrid.Rows[n].Cells[3].Value.ToString();
+                DateTime D = Convert.ToDateTime(MainMenuDataGrid.Rows[n].Cells[1].Value);
+                ReloadDateBox.Text = D.Date.ToString();
+                ReloadTimeBox.Text = D.TimeOfDay.ToString();
+            }
         }
         // Створення нового перезапуску
         private void ReloadButton_Click(object sender, EventArgs e)
@@ -121,22 +141,15 @@ private void Search_Click(object sender, EventArgs e)
                 DateTime PlanDay = DateTime.Now;
                 DateTime PlanTime = DateTime.Now;
                 DateTime ReloadTime = DateTime.Now;
-                int T = 0;
                 if (ReloadDateBox.Text != "")
                 {
                     try { PlanDay = Convert.ToDateTime(ReloadDateBox.Text); } catch { MessageBox.Show("Неправильно вказана дата", "Помилка!"); return; }
-                    T++;
                 }
                 if (ReloadTimeBox.Text != "")
                 {
                     try { PlanTime = Convert.ToDateTime(ReloadTimeBox.Text); } catch { MessageBox.Show("Неправильно вказано час", "Помилка!"); return; }
-                    T++;
                 }
-                if (T == 2)
-                {
-                    ReloadTime = PlanDay + PlanTime.TimeOfDay;
-                }
-                IDNumber++;
+                    ReloadTime = PlanDay.Date + PlanTime.TimeOfDay;             
                 if (ReloadTime >= DateTime.Now)
                 {
                     foreach (Reload Rel in ReloadList)
@@ -154,6 +167,7 @@ private void Search_Click(object sender, EventArgs e)
                     Reload R = new Reload(IDNumber, ReloadTime, UserName, ReloadReasonBox.Text);
                     AddInTable(R, MainMenuDataGrid);
                     ReloadList.Add(R);
+                    IDNumber++;
                 }
                 else MessageBox.Show("Вказано час, раніший за теперішній!","Помилка!");
                 
@@ -164,17 +178,22 @@ private void Search_Click(object sender, EventArgs e)
 
         private void button1_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < ReloadList.Count; i++)
+            if (Admin)
             {
-
-                if (string.Equals(Convert.ToString(ReloadList[i].ID), IDBox.Text))
+                int LookID = 0;
+                try { LookID = Convert.ToInt32(IDBox.Text); } catch { MessageBox.Show("Неправильно вказан ID для видалення", "Помилка!"); return; }
+                int Index = FindIDIndex(ReloadList, LookID);
+                if (Index == -1)
                 {
-                    ReloadList.RemoveAt(i);
-                    ReloadTable(MainMenuDataGrid, ReloadList);
-                    IDBox.Text = "";
-                    IDNumber--;
+                    MessageBox.Show("перезапуск не знайдено!", "Помилка!");
+                    return;
                 }
+                ReloadList.RemoveAt(Index);
+                ReloadTable(MainMenuDataGrid, ReloadList);
+                IDBox.Text = "";
+                IDNumber--;
             }
+            else MessageBox.Show("Ви не адміністратор!", "Помилка!");              
         }
 
         private void IDBox_TextChanged(object sender, EventArgs e)
@@ -344,6 +363,32 @@ private void Search_Click(object sender, EventArgs e)
                 ReloadDateBox.Text = "";
                 ReloadTimeBox.Text = "";
             }
+        }
+
+        private void ChangeButton_Click(object sender, EventArgs e)
+        {
+            DateTime PlanDay = DateTime.Now;
+            DateTime PlanTime = DateTime.Now;
+            DateTime ReloadTime = DateTime.Now;
+            if (ReloadDateBox.Text != "")
+            {
+                try { PlanDay = Convert.ToDateTime(ReloadDateBox.Text); } catch { MessageBox.Show("Неправильно вказана дата", "Помилка!"); return; }
+            }
+            if (ReloadTimeBox.Text != "")
+            {
+                try { PlanTime = Convert.ToDateTime(ReloadTimeBox.Text); } catch { MessageBox.Show("Неправильно вказано час", "Помилка!"); return; }
+            }
+            ReloadTime = PlanDay.Date + PlanTime.TimeOfDay;
+            int n = MainMenuDataGrid.SelectedCells[0].RowIndex;
+            int LookID = Convert.ToInt32(MainMenuDataGrid.Rows[n].Cells[0].Value);
+            int Indx = FindIDIndex(ReloadList, LookID);
+            ReloadList[Indx].Reason = ReloadReasonBox.Text;
+            ReloadList[Indx].Date = ReloadTime;
+            ReloadList[Indx].Name = UserName;
+            Reload R = ReloadList[Indx];
+            MainMenuDataGrid.Rows[n].Cells[3].Value = R.Reason;
+            MainMenuDataGrid.Rows[n].Cells[1].Value = R.Date.ToString();
+            MainMenuDataGrid.Rows[n].Cells[2].Value = R.Name;
         }
     }
 }
