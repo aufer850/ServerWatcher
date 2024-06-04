@@ -235,26 +235,41 @@ private void Search_Click(object sender, EventArgs e)
                 dr["User"] = R.Name;
                 dr["Reason"] = R.Reason;
                 DS.Tables["Reload"].Rows.Add(dr);
-                DataRow drc = SortDS.Tables["Reload"].NewRow();
-                drc["ID"] = R.ID;
-                drc["Time"] = R.Date;
-                drc["User"] = R.Name;
-                drc["Reason"] = R.Reason;
                 string SD = R.Date.Date.ToShortDateString().Replace(".", "");
                 if (i > 0)
                 {
                     Reload RR = ReloadList[i - 1];
                     if (DateTime.Equals(R.Date.Date, RR.Date.Date))
                     {
+                        DataRow drc = SortDS.Tables["Reload"].NewRow();
+                        drc["ID"] = R.ID;
+                        drc["Time"] = R.Date;
+                        drc["User"] = R.Name;
+                        drc["Reason"] = R.Reason;
                         SortDS.Tables["Reload"].Rows.Add(drc);
                     }
                     else
                     {
                         SortDS.WriteXml("C:\\ReloadData\\" + SD + ".xml");
                         SortDS = createDS();
+                        DataRow drc = SortDS.Tables["Reload"].NewRow();
+                        drc["ID"] = R.ID;
+                        drc["Time"] = R.Date;
+                        drc["User"] = R.Name;
+                        drc["Reason"] = R.Reason;
+
                         SortDS.Tables["Reload"].Rows.Add(drc);
                     }
-                } else SortDS.Tables["Reload"].Rows.Add(drc);
+                }
+                else
+                {
+                    DataRow drc = SortDS.Tables["Reload"].NewRow();
+                    drc["ID"] = R.ID;
+                    drc["Time"] = R.Date;
+                    drc["User"] = R.Name;
+                    drc["Reason"] = R.Reason;
+                    SortDS.Tables["Reload"].Rows.Add(drc);
+                }
                 if (i == ReloadList.Count)
                 {
                     SortDS.WriteXml("C:\\ReloadData\\" + SD + ".xml");
@@ -370,6 +385,10 @@ private void Search_Click(object sender, EventArgs e)
             DateTime PlanDay = DateTime.Now;
             DateTime PlanTime = DateTime.Now;
             DateTime ReloadTime = DateTime.Now;
+            if (Admin == false)
+            {
+                MessageBox.Show("Ви не адміністратор!", "Помилка!");
+            }
             if (ReloadDateBox.Text != "")
             {
                 try { PlanDay = Convert.ToDateTime(ReloadDateBox.Text); } catch { MessageBox.Show("Неправильно вказана дата", "Помилка!"); return; }
@@ -379,7 +398,8 @@ private void Search_Click(object sender, EventArgs e)
                 try { PlanTime = Convert.ToDateTime(ReloadTimeBox.Text); } catch { MessageBox.Show("Неправильно вказано час", "Помилка!"); return; }
             }
             ReloadTime = PlanDay.Date + PlanTime.TimeOfDay;
-            int n = MainMenuDataGrid.SelectedCells[0].RowIndex;
+            int n = 0;
+            try { n = MainMenuDataGrid.SelectedCells[0].RowIndex; } catch { MessageBox.Show("Оберіть рядок!", "Помилка!"); return; }
             int LookID = Convert.ToInt32(MainMenuDataGrid.Rows[n].Cells[0].Value);
             int Indx = FindIDIndex(ReloadList, LookID);
             ReloadList[Indx].Reason = ReloadReasonBox.Text;
