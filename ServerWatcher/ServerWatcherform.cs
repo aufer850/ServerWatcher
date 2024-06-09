@@ -30,11 +30,12 @@ namespace ServerWatcher
             ReloadReasonBox.Visible = Admin;
             RAdminLabel.Visible = Admin;
             ReloadMenuAdminLabel.Visible = Admin;
+            ChangeButton.Visible = Admin;
         }
         //методи нижче створені для отпимізації роботи з декількома DataGridView
         private void AddInTable(Reload R, DataGridView D)
         {
-            int n = D.Rows.Add();
+            int n = D.Rows.Add(R);
             D.Rows[n].Cells[0].Value = R.ID;
             D.Rows[n].Cells[1].Value = R.Date;
             D.Rows[n].Cells[2].Value = R.Name;
@@ -57,12 +58,19 @@ namespace ServerWatcher
             {
                 AddInTable(t, G);
             }
-            // відображення останього перезапуску
+            ShowLastReset();
+        }
+        // відображення останього перезапуску
+        private void ShowLastReset()
+        {
             if (ReloadList.Count > 0)
             {
                 Reload LR = ReloadList[0];
-                string last = DateTime.Now.Subtract(LR.Date).Days.ToString();
-                LastReloadLabel.Text = "Останній перезапуск: \n" + last + " днів тому";
+                int last = DateTime.Now.Subtract(LR.Date).Days;
+                string text = "Останній перезапуск: \n";
+                if (last > 0) LastReloadLabel.Text = text + last.ToString() + " днів тому";
+                else if (last == 0) LastReloadLabel.Text = text +"Сьогодні";
+                else if (last < 0) LastReloadLabel.Text = text + "Через " + (last * -1).ToString() + " днів";
                 LastIdLabel.Text = "ID: " + LR.ID;
                 ReasonLabel.Text = "Причина: " + LR.Reason;
             }
@@ -96,22 +104,7 @@ namespace ServerWatcher
         }
 // Далі йдуть методи самої програми
 
-private void Search_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Main_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
         {
 
         }
@@ -124,7 +117,7 @@ private void Search_Click(object sender, EventArgs e)
                 int n = MainMenuDataGrid.SelectedCells[0].RowIndex;
                 ReloadReasonBox.Text = MainMenuDataGrid.Rows[n].Cells[3].Value.ToString();
                 DateTime D = Convert.ToDateTime(MainMenuDataGrid.Rows[n].Cells[1].Value);
-                ReloadDateBox.Text = D.Date.ToString();
+                ReloadDateBox.Text = D.Day.ToString() + "." + D.Month.ToString() + "." + D.Year.ToString();
                 ReloadTimeBox.Text = D.TimeOfDay.ToString();
             }
         }
@@ -165,8 +158,12 @@ private void Search_Click(object sender, EventArgs e)
                         }
                     }
                     Reload R = new Reload(IDNumber, ReloadTime, UserName, ReloadReasonBox.Text);
-                    AddInTable(R, MainMenuDataGrid);
                     ReloadList.Add(R);
+                    SortbyDate(ReloadList);
+                    ReloadTable(MainMenuDataGrid, ReloadList);
+                    ShowLastReset();
+                    
+
                     IDNumber++;
                 }
                 else MessageBox.Show("Вказано час, раніший за теперішній!","Помилка!");
@@ -301,6 +298,7 @@ private void Search_Click(object sender, EventArgs e)
                 }
                 SortbyDate(ReloadList);
                 ReloadTable(MainMenuDataGrid, ReloadList);
+                ShowLastReset();
             }
             else MessageBox.Show("Немає файлу!", "Помилка!");
         }
@@ -325,21 +323,6 @@ private void Search_Click(object sender, EventArgs e)
                 }
             }
             ReloadTable(SearchGridView,LocalList);
-        }
-
-        private void SearchGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
         }
 
         // Пошук перезапусків в період часу
@@ -401,13 +384,13 @@ private void Search_Click(object sender, EventArgs e)
             int n = 0;
             try { n = MainMenuDataGrid.SelectedCells[0].RowIndex; } catch { MessageBox.Show("Оберіть рядок!", "Помилка!"); return; }
             int LookID = Convert.ToInt32(MainMenuDataGrid.Rows[n].Cells[0].Value);
-            int Indx = FindIDIndex(ReloadList, LookID);
+            int Indx = FindIDIndex(ReloadList, LookID); 
             ReloadList[Indx].Reason = ReloadReasonBox.Text;
             ReloadList[Indx].Date = ReloadTime;
             ReloadList[Indx].Name = UserName;
             Reload R = ReloadList[Indx];
             MainMenuDataGrid.Rows[n].Cells[3].Value = R.Reason;
-            MainMenuDataGrid.Rows[n].Cells[1].Value = R.Date.ToString();
+            MainMenuDataGrid.Rows[n].Cells[1].Value = R.Date;
             MainMenuDataGrid.Rows[n].Cells[2].Value = R.Name;
         }
     }

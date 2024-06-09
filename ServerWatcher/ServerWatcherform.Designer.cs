@@ -31,6 +31,7 @@ namespace ServerWatcher
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.MainMenu = new System.Windows.Forms.TabPage();
+            this.ChangeButton = new System.Windows.Forms.Button();
             this.PlanL2 = new System.Windows.Forms.Label();
             this.PlanL1 = new System.Windows.Forms.Label();
             this.ReloadTimeBox = new System.Windows.Forms.TextBox();
@@ -68,7 +69,6 @@ namespace ServerWatcher
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ChangeButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.MainMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MainMenuDataGrid)).BeginInit();
@@ -94,6 +94,7 @@ namespace ServerWatcher
             // 
             // MainMenu
             // 
+            this.MainMenu.BackColor = System.Drawing.SystemColors.ControlLight;
             this.MainMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.MainMenu.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.MainMenu.Controls.Add(this.ChangeButton);
@@ -123,8 +124,18 @@ namespace ServerWatcher
             this.MainMenu.Size = new System.Drawing.Size(876, 433);
             this.MainMenu.TabIndex = 0;
             this.MainMenu.Text = "Головна";
-            this.MainMenu.UseVisualStyleBackColor = true;
-            this.MainMenu.Click += new System.EventHandler(this.Main_Click);
+            // 
+            // ChangeButton
+            // 
+            this.ChangeButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.ChangeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
+            this.ChangeButton.Location = new System.Drawing.Point(154, 389);
+            this.ChangeButton.Name = "ChangeButton";
+            this.ChangeButton.Size = new System.Drawing.Size(130, 35);
+            this.ChangeButton.TabIndex = 19;
+            this.ChangeButton.Text = "Змінити";
+            this.ChangeButton.UseVisualStyleBackColor = true;
+            this.ChangeButton.Click += new System.EventHandler(this.ChangeButton_Click);
             // 
             // PlanL2
             // 
@@ -150,6 +161,7 @@ namespace ServerWatcher
             // 
             // ReloadTimeBox
             // 
+            this.ReloadTimeBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ReloadTimeBox.Location = new System.Drawing.Point(154, 280);
             this.ReloadTimeBox.Name = "ReloadTimeBox";
             this.ReloadTimeBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -159,6 +171,7 @@ namespace ServerWatcher
             // 
             // ReloadDateBox
             // 
+            this.ReloadDateBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ReloadDateBox.Location = new System.Drawing.Point(13, 280);
             this.ReloadDateBox.Name = "ReloadDateBox";
             this.ReloadDateBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -214,6 +227,7 @@ namespace ServerWatcher
             // 
             // clearbutton
             // 
+            this.clearbutton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.clearbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
             this.clearbutton.Location = new System.Drawing.Point(689, 390);
             this.clearbutton.Name = "clearbutton";
@@ -225,6 +239,7 @@ namespace ServerWatcher
             // 
             // LoadButton
             // 
+            this.LoadButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.LoadButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
             this.LoadButton.Location = new System.Drawing.Point(468, 389);
             this.LoadButton.Name = "LoadButton";
@@ -236,6 +251,7 @@ namespace ServerWatcher
             // 
             // SaveButton
             // 
+            this.SaveButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.SaveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
             this.SaveButton.Location = new System.Drawing.Point(290, 389);
             this.SaveButton.Name = "SaveButton";
@@ -292,6 +308,7 @@ namespace ServerWatcher
             // 
             // ReloadReasonBox
             // 
+            this.ReloadReasonBox.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.ReloadReasonBox.FormattingEnabled = true;
             this.ReloadReasonBox.Items.AddRange(new object[] {
             "Профілактика",
@@ -314,6 +331,7 @@ namespace ServerWatcher
             this.Date,
             this.User,
             this.Reason});
+            this.MainMenuDataGrid.GridColor = System.Drawing.SystemColors.ControlDarkDark;
             this.MainMenuDataGrid.Location = new System.Drawing.Point(290, 6);
             this.MainMenuDataGrid.Name = "MainMenuDataGrid";
             this.MainMenuDataGrid.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -359,13 +377,15 @@ namespace ServerWatcher
             // 
             // ReloadButton
             // 
+            this.ReloadButton.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.ReloadButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.ReloadButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
-            this.ReloadButton.Location = new System.Drawing.Point(7, 390);
+            this.ReloadButton.Location = new System.Drawing.Point(11, 389);
             this.ReloadButton.Name = "ReloadButton";
             this.ReloadButton.Size = new System.Drawing.Size(140, 35);
             this.ReloadButton.TabIndex = 2;
             this.ReloadButton.Text = "Перезавантажити";
-            this.ReloadButton.UseVisualStyleBackColor = true;
+            this.ReloadButton.UseVisualStyleBackColor = false;
             this.ReloadButton.Click += new System.EventHandler(this.ReloadButton_Click);
             // 
             // DisplayName
@@ -378,10 +398,10 @@ namespace ServerWatcher
             this.DisplayName.Size = new System.Drawing.Size(87, 19);
             this.DisplayName.TabIndex = 1;
             this.DisplayName.Text = "NickName";
-            this.DisplayName.Click += new System.EventHandler(this.label2_Click);
             // 
             // SearchTab
             // 
+            this.SearchTab.BackColor = System.Drawing.SystemColors.ControlLight;
             this.SearchTab.Controls.Add(this.label3);
             this.SearchTab.Controls.Add(this.label2);
             this.SearchTab.Controls.Add(this.label1);
@@ -396,14 +416,12 @@ namespace ServerWatcher
             this.SearchTab.Size = new System.Drawing.Size(876, 433);
             this.SearchTab.TabIndex = 2;
             this.SearchTab.Text = "Пошук";
-            this.SearchTab.UseVisualStyleBackColor = true;
-            this.SearchTab.Click += new System.EventHandler(this.Search_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
-            this.label3.Location = new System.Drawing.Point(52, 63);
+            this.label3.Location = new System.Drawing.Point(76, 61);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(81, 24);
             this.label3.TabIndex = 12;
@@ -413,7 +431,7 @@ namespace ServerWatcher
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
-            this.label2.Location = new System.Drawing.Point(8, 192);
+            this.label2.Location = new System.Drawing.Point(32, 177);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(113, 20);
             this.label2.TabIndex = 11;
@@ -423,40 +441,42 @@ namespace ServerWatcher
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
-            this.label1.Location = new System.Drawing.Point(8, 111);
+            this.label1.Location = new System.Drawing.Point(32, 104);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(138, 20);
             this.label1.TabIndex = 10;
             this.label1.Text = "Початкова дата:";
-            this.label1.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // ProOnlyBox
             // 
             this.ProOnlyBox.AutoSize = true;
-            this.ProOnlyBox.Location = new System.Drawing.Point(8, 278);
+            this.ProOnlyBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
+            this.ProOnlyBox.Location = new System.Drawing.Point(8, 256);
             this.ProOnlyBox.Name = "ProOnlyBox";
-            this.ProOnlyBox.Size = new System.Drawing.Size(162, 17);
+            this.ProOnlyBox.Size = new System.Drawing.Size(206, 21);
             this.ProOnlyBox.TabIndex = 9;
             this.ProOnlyBox.Text = "Тільки через профілактику";
             this.ProOnlyBox.UseVisualStyleBackColor = true;
             // 
             // EndDataTextBox
             // 
-            this.EndDataTextBox.Location = new System.Drawing.Point(8, 215);
+            this.EndDataTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.EndDataTextBox.Location = new System.Drawing.Point(36, 213);
             this.EndDataTextBox.Name = "EndDataTextBox";
             this.EndDataTextBox.Size = new System.Drawing.Size(158, 20);
             this.EndDataTextBox.TabIndex = 8;
-            this.EndDataTextBox.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // StartDataTextBox
             // 
-            this.StartDataTextBox.Location = new System.Drawing.Point(8, 136);
+            this.StartDataTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.StartDataTextBox.Location = new System.Drawing.Point(36, 138);
             this.StartDataTextBox.Name = "StartDataTextBox";
             this.StartDataTextBox.Size = new System.Drawing.Size(158, 20);
             this.StartDataTextBox.TabIndex = 7;
             // 
             // button5
             // 
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button5.Location = new System.Drawing.Point(481, 378);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(195, 47);
@@ -467,7 +487,8 @@ namespace ServerWatcher
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(8, 313);
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button4.Location = new System.Drawing.Point(32, 313);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(158, 47);
             this.button4.TabIndex = 5;
@@ -485,12 +506,12 @@ namespace ServerWatcher
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn1});
+            this.SearchGridView.GridColor = System.Drawing.SystemColors.ControlDarkDark;
             this.SearchGridView.Location = new System.Drawing.Point(291, 3);
             this.SearchGridView.Name = "SearchGridView";
             this.SearchGridView.RowHeadersVisible = false;
             this.SearchGridView.Size = new System.Drawing.Size(577, 357);
             this.SearchGridView.TabIndex = 4;
-            this.SearchGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.SearchGridView_CellContentClick);
             // 
             // dataGridViewTextBoxColumn4
             // 
@@ -526,17 +547,6 @@ namespace ServerWatcher
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewTextBoxColumn1.Width = 75;
-            // 
-            // ChangeButton
-            // 
-            this.ChangeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)), true);
-            this.ChangeButton.Location = new System.Drawing.Point(154, 390);
-            this.ChangeButton.Name = "ChangeButton";
-            this.ChangeButton.Size = new System.Drawing.Size(130, 35);
-            this.ChangeButton.TabIndex = 19;
-            this.ChangeButton.Text = "Змінити";
-            this.ChangeButton.UseVisualStyleBackColor = true;
-            this.ChangeButton.Click += new System.EventHandler(this.ChangeButton_Click);
             // 
             // ServerWatcherform
             // 
