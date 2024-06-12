@@ -29,13 +29,34 @@ namespace ServerWatcher
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.UserLogin = new System.Windows.Forms.TextBox();
             this.Password = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(75, 33);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(121, 31);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Вітаємо!";
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button1.Location = new System.Drawing.Point(65, 291);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(131, 43);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Увійти";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -47,16 +68,6 @@ namespace ServerWatcher
             this.label1.TabIndex = 0;
             this.label1.Text = "Логін";
             this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(75, 33);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(121, 31);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Вітаємо!";
             // 
             // label3
             // 
@@ -83,17 +94,6 @@ namespace ServerWatcher
             this.Password.Size = new System.Drawing.Size(100, 20);
             this.Password.TabIndex = 4;
             // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(65, 291);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(131, 43);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Увійти";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -115,12 +115,11 @@ namespace ServerWatcher
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox UserLogin;
         private System.Windows.Forms.TextBox Password;
-        private System.Windows.Forms.Button button1;
     }
 }

@@ -201,6 +201,7 @@ namespace ServerWatcher
         {
             IDBox.Text = "";
         }
+        //Допоміжний метод для функції збереження
         public DataSet createDS()
         {
             DataSet DS = new DataSet();
